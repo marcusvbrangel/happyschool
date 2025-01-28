@@ -10,7 +10,11 @@ name: Java CI with Maven
 
 on:
   pull_request:
-    branches: [ "development", "main" ]
+    branches:
+      - "development"
+      - "main"
+
+  workflow_dispatch:
 
 jobs:
   build:
