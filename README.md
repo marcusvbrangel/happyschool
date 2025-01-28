@@ -1,7 +1,4 @@
 
-[![Java CI with Maven](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml/badge.svg)](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml)
-
-
 # Happy School
 
 Happy School é uma aplicação web desenvolvida em Java utilizando o Spring Framework.
