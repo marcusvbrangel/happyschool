@@ -39,3 +39,4 @@ jobs:
 # 5. implement code coverage
 # 6. implement security scanning
 # 7. implement secret scanning on Dockerfile
+# 8. implement a hash code for each sufix image
