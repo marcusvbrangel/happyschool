@@ -1,0 +1,18 @@
+
+version: '3.3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: happyschool-db
+    #    restart: always
+    environment:
+      MYSQL_DATABASE: 'happyschool'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: '1234'
+    ports:
+      - '3306:3306'
+    volumes:
+      - happyschool-db:/var/lib/mysql
+volumes:
+    happyschool-db:
