@@ -12,7 +12,7 @@ class HappySchoolApplicationTests {
 	@Test
     @DisplayName("verifica se true é igual a true")
 	void contextLoads() {
-        assertTrue(false);
+        assertTrue(true);
 	}
 
 }
