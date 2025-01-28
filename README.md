@@ -1,4 +1,5 @@
-[![Java CI with Maven](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml/badge.svg?branch=development&event=workflow_run)](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml)
+
+[![Java CI with Maven](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml/badge.svg)](https://github.com/marcusvbrangel/eazyschool/actions/workflows/maven.yml)
 
 # Happy School
 
