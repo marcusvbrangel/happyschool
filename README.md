@@ -4,7 +4,7 @@
 
 # Eazy School
 
-Eazy School é uma aplicação web desenvolvida em Java utilizando o Spring Framework.
+Happy School é uma aplicação web desenvolvida em Java utilizando o Spring Framework.
 
 ## Tecnologias Utilizadas
 
