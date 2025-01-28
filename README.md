@@ -8,6 +8,8 @@ Happy School é uma aplicação web desenvolvida em Java utilizando o Spring Fra
 
 ----
 
+---
+
 ## Tecnologias Utilizadas
 
 - Java 21
