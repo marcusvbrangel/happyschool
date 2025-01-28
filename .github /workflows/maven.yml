@@ -29,3 +29,12 @@ jobs:
 
       -   name: Build and Test with Maven
           run: mvn --batch-mode package
+          # add shurefire report
+
+# 1. implement login on docker hub
+# 2. implement push to docker hub
+# 3. implement linting
+# 4. implement static code analysis
+# 5. implement code coverage
+# 6. implement security scanning
+# 7. implement secret scanning on Dockerfile
