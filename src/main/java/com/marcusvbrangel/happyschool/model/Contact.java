@@ -15,7 +15,7 @@ public class Contact extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
-    @GenericGenerator(name = "native",strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "contact_id")
     private int contactId;
 
