@@ -1,6 +1,7 @@
 package com.marcusvbrangel.happyschool.controller;
 
 import com.marcusvbrangel.happyschool.model.Person;
+import com.marcusvbrangel.happyschool.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("public")
 public class PublicController {
 
-//    @Autowired
-//    PersonService personService;
+    private final PersonService personService;
+
+    public PublicController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage(Model model) {
@@ -27,7 +31,13 @@ public class PublicController {
         if (errors.hasErrors()) {
             return "register.html";
         }
-        return "redirect:/login?register=true";
+        boolean isSaved = personService.createNewPerson(person);
+        if (isSaved) {
+            return "redirect:/login?register=true";
+        } else {
+            return "register.html";
+        }
+
     }
 
 }
