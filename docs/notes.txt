@@ -63,9 +63,22 @@ docker image ls
 
 --------------------------------------------------------------------------------
 
+Bcrypt Hash Generator
+https://bcrypt-generator.com/
 
 --------------------------------------------------------------------------------
 
+admin@happyschool.com
+admin
+
+joao@gmail.com
+123456
+
+tarso@yahoo.com
+123456
+
+INSERT INTO person (name, email, mobile_number, pwd, role_id, created_at, created_by)
+  VALUES ('Admin','admin@happyschool.com','3443434343','$2a$10$XhU4UcSxDPb5G0I0fT/CZ.Lfj2VW2fkLkUP5cOEM.xM8EzyUQXaD2', 1 ,CURDATE(),'DBA');
 
 --------------------------------------------------------------------------------
 
