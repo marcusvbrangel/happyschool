@@ -60,10 +60,10 @@ public class Person extends BaseEntity{
     private String confirmPwd;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = Roles.class)
-    @JoinColumn(name = "role_id", referencedColumnName = "roleId", nullable = false)
+    @JoinColumn(name = "role_id", referencedColumnName = "roleId", nullable = false, unique = false)
     private Roles roles;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
-    @JoinColumn(name = "address_id", referencedColumnName = "addressId", nullable = true)
+    @JoinColumn(name = "address_id", referencedColumnName = "addressId", nullable = true, unique = false)
     private Address address;
 }
