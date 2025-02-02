@@ -31,11 +31,11 @@ jobs:
           --health-retries=100
           
     steps:
-    - name: Checkout
     - uses: actions/checkout@v4
+    - name: Checkout
 
-    - name: Set up cache
     - uses: actions/cache@v3
+    - name: Set up cache    
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
