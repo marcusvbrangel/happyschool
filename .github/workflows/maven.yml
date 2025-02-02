@@ -18,7 +18,7 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: secure_password
           MYSQL_DATABASE: happyschool
           MYSQL_USER: admin          
           MYSQL_PASSWORD: 1234 
