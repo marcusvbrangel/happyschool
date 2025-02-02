@@ -29,14 +29,11 @@ jobs:
           --health-interval=15s
           --health-timeout=40s
           --health-retries=100
-          
+
+
+
     steps:
     - uses: actions/checkout@v4
-    - name: Checkout
-
-    
-
-    
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
