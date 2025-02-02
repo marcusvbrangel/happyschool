@@ -13,6 +13,23 @@ jobs:
   build:
     name: Build and Test with Maven
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: happyschool
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -21,6 +38,21 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
+    - name: Wait for MySQL to be healthy
+      run: |
+        for i in {30..0}; do
+          if docker exec mysql mysqladmin ping -u root -proot --silent &> /dev/null; then
+            break
+          fi
+          echo 'Waiting for MySQL to be up...'
+          sleep 1
+        done
+        if [ "$i" = 0 ]; then
+          echo 'MySQL did not start in time' >&2
+          exit 1
+        fi    
+
     - name: Build
       run: mvn clean package -Dmaven.test.skip=true
     - name: Test
