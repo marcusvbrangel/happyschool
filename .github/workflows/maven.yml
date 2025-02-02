@@ -20,6 +20,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: happyschool
+          MYSQL_USER: admin          
+          MYSQL_PASSWORD: 1234 
         ports:
           - 3306:3306
         options: >-
