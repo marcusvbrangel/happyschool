@@ -69,6 +69,8 @@ jobs:
       run: mvn test
 
 
+    - name: Build Docker image
+      run: docker build -t marcusvbrangel/happyshool:latest .
 
 
 
