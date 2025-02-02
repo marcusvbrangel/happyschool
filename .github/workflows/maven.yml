@@ -1,10 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
 
 name: Java CI with Maven
 
@@ -18,8 +11,26 @@ on:
 
 jobs:
   build:
+    name: Build and Test with Maven
+    runs-on: ubuntu-latest
 
-    runs-on: ubuntu-24.04
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: $2a$10$7xVSaCEAYhyAXJ6FD/cqZebaRApVeWD50SRs/kdFBprfCPtJtdKQi
+          MYSQL_DATABASE: happyschool
+          MYSQL_USER: admin          
+          MYSQL_PASSWORD: 1234 
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost --silent"
+          --health-interval=15s
+          --health-timeout=40s
+          --health-retries=100
+
+
 
     steps:
     - uses: actions/checkout@v4
@@ -29,6 +40,30 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
+    - name: Wait for MySQL to be healthy
+      run: |
+        for i in `seq 1 30`; do
+          if mysqladmin ping -h "127.0.0.1" --silent; then
+            echo "MySQL is up and running"
+            break
+          fi
+          echo "Waiting for MySQL to be up... ($i)"
+          sleep 2
+        done    
+
+    - name: Build
+      run: mvn clean package -Dmaven.test.skip=true
+    - name: Test
+      run: mvn test
+
+
+
+
+
+
+
+
 #    - name: Build and Test with Maven
 #      run: mvn -B package --file pom.xml
 
@@ -44,3 +79,7 @@ jobs:
 # 6. implement security scanning
 # 7. implement secret scanning on Dockerfile
 # 8. implement a hash code for each sufix image
+# 9. escanear imagem docker
+# 10. assinar imagem docker
+# 11. implement push to aws ecr
+# 12. implementar tag relacionadas aos jobs executados
