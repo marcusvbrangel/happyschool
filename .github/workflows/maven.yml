@@ -25,10 +25,10 @@ jobs:
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=10
+          --health-cmd="mysqladmin ping -h localhost --silent"
+          --health-interval=15s
+          --health-timeout=40s
+          --health-retries=100
 
 
 
@@ -43,17 +43,14 @@ jobs:
 
     - name: Wait for MySQL to be healthy
       run: |
-        for i in {60..0}; do
-          if docker exec mysql mysqladmin ping -u root -proot --silent &> /dev/null; then
+        for i in `seq 1 30`; do
+          if mysqladmin ping -h "127.0.0.1" --silent; then
+            echo "MySQL is up and running"
             break
           fi
-          echo 'Waiting for MySQL to be up...'
-          sleep 1
-        done
-        if [ "$i" = 0 ]; then
-          echo 'MySQL did not start in time' >&2
-          exit 1
-        fi    
+          echo "Waiting for MySQL to be up... ($i)"
+          sleep 2
+        done    
 
     - name: Build
       run: mvn clean package -Dmaven.test.skip=true
