@@ -68,7 +68,14 @@ jobs:
       run: mvn test
 
     - name: Build Docker image
-      run: docker build -t marcusvbrangel/happyshool:latest .
+      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest .
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
+
 
 
 
