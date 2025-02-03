@@ -81,10 +81,12 @@ jobs:
       run: echo "IMAGE_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
     - name: Tag Docker image with date and time
-      run: docker tag ${{ env.DOCKER_HUB_USERNAME }}/happyshool:latest ${{ env.DOCKER_HUB_USERNAME }}/happyshool:${{ env.IMAGE_TAG }}
+      run: docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:${{ env.IMAGE_TAG }}
 
     - name: Push Docker image with tag (date and time)
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:${{ env.IMAGE_TAG }}
+
+  
 
 
 
