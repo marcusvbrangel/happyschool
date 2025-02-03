@@ -80,6 +80,16 @@ jobs:
     - name: Scan Docker image for vulnerabilities with Docker Scout
       run: ~/.docker/cli-plugins/docker-scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
 
+    - name: Add security alert badge if vulnerabilities found
+      run: |
+        critical=$(jq '[.vulnerabilities[] | select(.severity == "critical")] | length' scout_report.json)
+        high=$(jq '[.vulnerabilities[] | select(.severity == "high")] | length' scout_report.json)
+        #if [ "$critical" -gt 0 ] || [ "$high" -gt 0 ]; then
+          echo "![Security Alert](https://img.shields.io/badge/security-critical-red)" > security_badge.md
+        #else
+          #echo "![Security Alert](https://img.shields.io/badge/security-passed-green)" > security_badge.md
+        #fi
+
     - name: Push Docker image with tag (latest)
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
 
