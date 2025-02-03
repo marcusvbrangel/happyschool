@@ -94,6 +94,7 @@ INSERT INTO person (name, email, mobile_number, pwd, role_id, created_at, create
 
 --------------------------------------------------------------------------------
 
+mvn clean verify -P coverage
 
 --------------------------------------------------------------------------------
 

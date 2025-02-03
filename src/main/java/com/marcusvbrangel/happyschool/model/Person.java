@@ -66,4 +66,21 @@ public class Person extends BaseEntity{
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id", referencedColumnName = "addressId", nullable = true, unique = false)
     private Address address;
+
+    public double somar(double valor1, double valor2) {
+        return valor1 + valor2;
+    }
+
+    public double subtrair(double valor1, double valor2) {
+        return valor1 - valor2;
+    }
+
+    public double multiplicar(double valor1, double valor2) {
+        return valor1 * valor2;
+    }
+
+    public double dividir(double valor1, double valor2) {
+        return valor1 / valor2;
+    }
+
 }
