@@ -76,6 +76,10 @@ jobs:
     - name: Install Docker Scout
       run: |
         curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh
+        if [ ! -f ~/.docker/cli-plugins/docker-scout ]; then
+          echo "Docker Scout installation failed"
+          exit 1
+        fi
 
     - name: Scan Docker image for vulnerabilities with Docker Scout
       run: ~/.docker/cli-plugins/docker-scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest --json > scout_report.json
