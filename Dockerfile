@@ -1,5 +1,5 @@
 FROM alpine/java:21-jdk
 WORKDIR /app
-COPY target/eazyshool.jar eazyshool.jar
+COPY target/happyshool.jar .
 EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "happyshool.jar"]
