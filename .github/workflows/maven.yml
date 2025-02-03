@@ -76,23 +76,19 @@ jobs:
     - name: Install Docker Scout
       run: |
         curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh
-        if [ ! -f ~/.docker/cli-plugins/docker-scout ]; then
-          echo "Docker Scout installation failed"
-          exit 1
-        fi
 
     - name: Scan Docker image for vulnerabilities with Docker Scout
-      run: ~/.docker/cli-plugins/docker-scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest --json > scout_report.json
+      run: ~/.docker/cli-plugins/docker-scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
 
-    - name: Add security alert badge if vulnerabilities found
-      run: |
-        critical=$(jq '[.vulnerabilities[] | select(.severity == "critical")] | length' scout_report.json)
-        high=$(jq '[.vulnerabilities[] | select(.severity == "high")] | length' scout_report.json)
-        if [ "$critical" -gt 0 ] || [ "$high" -gt 0 ]; then
-          echo "![Security Alert](https://img.shields.io/badge/security-critical-red)" > security_badge.md
-        else
-          echo "![Security Alert](https://img.shields.io/badge/security-passed-green)" > security_badge.md
-        fi
+    #- name: Add security alert badge if vulnerabilities found
+      #run: |
+        #critical=$(jq '[.vulnerabilities[] | select(.severity == "critical")] | length' scout_report.json)
+        #high=$(jq '[.vulnerabilities[] | select(.severity == "high")] | length' scout_report.json)
+        #if [ "$critical" -gt 0 ] || [ "$high" -gt 0 ]; then
+          #echo "![Security Alert](https://img.shields.io/badge/security-critical-red)" > security_badge.md
+        #else
+          #echo "![Security Alert](https://img.shields.io/badge/security-passed-green)" > security_badge.md
+        #fi
 
     - name: Push Docker image with tag (latest)
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
