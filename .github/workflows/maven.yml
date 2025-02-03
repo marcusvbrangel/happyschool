@@ -70,8 +70,12 @@ jobs:
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest .
 
-    - name: Scan Docker image for vulnerabilities with Scout
-      run: docker scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
+    - name: Install Docker Scout
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh
+
+    - name: Scan Docker image for vulnerabilities with Docker Scout
+      run: ~/.docker/cli-plugins/docker-scout cves ${{ secrets.DOCKER_HUB_USERNAME }}/happyshool:latest
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
