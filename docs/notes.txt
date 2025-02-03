@@ -1,6 +1,18 @@
 
 --------------------------------------------------------------------------------
 
+https://github.com
+
+https://hub.docker.com
+
+https://scout.docker.com
+
+https://sonarcloud.io
+
+
+
+--------------------------------------------------------------------------------
+
 Intellij IDEA - Disable spellchecking
 https://www.jetbrains.com/help/idea/spellchecking.html#disable-spellcheck
 
