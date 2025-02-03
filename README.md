@@ -1,6 +1,7 @@
 
 [![Java CI with Maven](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml/badge.svg)](https://github.com/marcusvbrangel/eazyschool/actions/workflows/maven.yml)
-[![Security Alert](https://img.shields.io/badge/security-critical-red)](https://github.com/marcusvbrangel/happyschool/security)
+[![Test Status](https://img.shields.io/badge/test-passed-brightgreen)](https://github.com/marcusvbrangel/happyschool/actions/workflows/maven.yml)
+
 
 # Happy School
 
