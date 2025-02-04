@@ -2,14 +2,13 @@ package com.marcusvbrangel.happyschool.model;
 
 import com.marcusvbrangel.happyschool.annotation.FieldsValueMatch;
 import com.marcusvbrangel.happyschool.annotation.PasswordValidator;
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
@@ -66,21 +65,5 @@ public class Person extends BaseEntity{
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id", referencedColumnName = "addressId", nullable = true, unique = false)
     private Address address;
-
-    public double somar(double valor1, double valor2) {
-        return valor1 + valor2;
-    }
-
-    public double subtrair(double valor1, double valor2) {
-        return valor1 - valor2;
-    }
-
-    public double multiplicar(double valor1, double valor2) {
-        return valor1 * valor2;
-    }
-
-    public double dividir(double valor1, double valor2) {
-        return valor1 / valor2;
-    }
 
 }
