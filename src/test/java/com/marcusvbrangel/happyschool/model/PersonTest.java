@@ -55,7 +55,7 @@ class PersonTest {
         address.setAddressId(1);
         address.setCity("Anytown");
         address.setState("Anystate");
-        address.setZipCode(12345);
+        address.setZipCode("12345");
 
         person.setAddress(address);
 
@@ -63,7 +63,7 @@ class PersonTest {
         assertEquals(1, person.getAddress().getAddressId());
         assertEquals("Anytown", person.getAddress().getCity());
         assertEquals("Anystate", person.getAddress().getState());
-        assertEquals(12345, person.getAddress().getZipCode());
+        assertEquals("12345", person.getAddress().getZipCode());
     }
 
 }

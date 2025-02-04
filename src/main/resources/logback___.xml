@@ -33,7 +33,7 @@
     </appender>
 
     <root level="error">
-<!--        <appender-ref ref="RollingFile" />-->
+
         <appender-ref ref="Console" />
     </root>
 
