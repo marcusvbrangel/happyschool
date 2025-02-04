@@ -17,8 +17,8 @@ public class ProjectSecurityConfig {
         http
             .csrf((csrf) -> csrf
                 .ignoringRequestMatchers("/saveMsg")
-                .ignoringRequestMatchers("/public/**")
-                .ignoringRequestMatchers("/happyschool/actuator/**"))
+                .ignoringRequestMatchers("/public/**"))
+//                .ignoringRequestMatchers("/happyschool/actuator/**"))
             .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
                 .requestMatchers("/displayMessages").hasRole("ADMIN")
                 .requestMatchers("/closeMsg/**").hasRole("ADMIN")
