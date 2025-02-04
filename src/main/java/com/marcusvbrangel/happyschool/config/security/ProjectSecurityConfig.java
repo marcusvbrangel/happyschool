@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ProjectSecurityConfig {
 
+    private static final String ADMIN = "ADMIN";
+
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
@@ -20,9 +22,9 @@ public class ProjectSecurityConfig {
                 .ignoringRequestMatchers("/public/**"))
 //                .ignoringRequestMatchers("/happyschool/actuator/**"))
             .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
-                .requestMatchers("/displayMessages").hasRole("ADMIN")
-                .requestMatchers("/closeMsg/**").hasRole("ADMIN")
-                .requestMatchers("/happyschool/actuator/**").hasRole("ADMIN")
+                .requestMatchers("/displayMessages").hasRole(ADMIN)
+                .requestMatchers("/closeMsg/**").hasRole(ADMIN)
+                .requestMatchers("/happyschool/actuator/**").hasRole(ADMIN)
                 .requestMatchers("/", "/home").permitAll()
                 .requestMatchers("/holidays/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
