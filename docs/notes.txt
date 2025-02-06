@@ -98,9 +98,76 @@ mvn clean verify -P coverage
 
 --------------------------------------------------------------------------------
 
-teste de funcionamento
+.evn
+  SPRING_PROFILES_ACTIVE=development
+  SERVER_PORT=9090
+  SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/happyschool?allowPublicKeyRetrieval=true&useSSL=false
+  SPRING_DATASOURCE_USERNAME=admin
+  SPRING_DATASOURCE_PASSWORD=1234
+
+source .env
+
+echo SERVER_PORT
+
+
+docker image build --no-cache -t marcusvbrangel/happyschool:dev .
+
+docker image ls
+
+  REPOSITORY                                  TAG             IMAGE ID       CREATED          SIZE
+  marcusvbrangel/happyschool                  dev             38137ca31f1a   19 seconds ago   409MB
+
+
+docker image inspect marcusvbrangel/happyschool:dev
+
+
+bash
+
+
+docker container rm happyschool
+
+
+docker container run -d \
+  -e SPRING_PROFILES_ACTIVE=development \
+  -e SERVER_PORT=9090 \
+  -e SPRING_DATASOURCE_USERNAME=admin \
+  -e SPRING_DATASOURCE_PASSWORD=1234 \
+  -p 9090:9090 \
+  --network happyschool-network \
+  --name happyschool \
+  marcusvbrangel/happyschool:dev
+
+
+      36bd8f52784129468f47a31ed08c59728b253033e247669a3a740ca23fd667ef
+
+
+docker container ls -a
+
+CONTAINER ID   IMAGE                            COMMAND                  CREATED         STATUS         PORTS                                          NAMES
+36bd8f527841   marcusvbrangel/happyschool:dev   "java -jar happyshoo…"   8 seconds ago   Up 7 seconds   0.0.0.0:9090->8080/tcp, [::]:9090->8080/tcp    happyschool
+
+
+docker logs happyschool
+
+
+
+
+
 
 --------------------------------------------------------------------------------
+
+
+docker exec -it happyschool-mysql sh
+
+mysql -u admin -p
+
+show databases;
+
+use happyschool;
+
+select database();
+
+show tables;
 
 
 --------------------------------------------------------------------------------
