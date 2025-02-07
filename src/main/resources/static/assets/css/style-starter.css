@@ -614,7 +614,7 @@ progress {
 }
 
 .blockquote-footer::before {
-  content: "— ";
+  content: "— ";
 }
 
 .img-fluid {
@@ -21538,4 +21538,9 @@ label {
 
 .table-responsive-md {
   margin: 50px;
+}
+
+.control-label:after {
+   content:"*";
+   color:red;
 }
