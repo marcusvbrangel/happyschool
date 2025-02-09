@@ -21,8 +21,9 @@ public class ProjectSecurityConfig {
                 .ignoringRequestMatchers("/saveMsg")
                 .ignoringRequestMatchers("/public/**"))
 //                .ignoringRequestMatchers("/happyschool/actuator/**"))
-            .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
-                .requestMatchers("/displayMessages").hasRole(ADMIN)
+            .authorizeHttpRequests((requests) ->
+                requests.requestMatchers("/dashboard").authenticated()
+                .requestMatchers("/displayMessages/**").hasRole(ADMIN)
                 .requestMatchers("/admin/**").hasRole(ADMIN)
                 .requestMatchers("/closeMsg/**").hasRole(ADMIN)
                 .requestMatchers("/happyschool/actuator/**").hasRole(ADMIN)
