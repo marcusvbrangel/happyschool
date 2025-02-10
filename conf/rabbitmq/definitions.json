@@ -295,37 +295,37 @@
     "users": [
         {
             "name": "user-payment",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "user-invoice",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "user-shipping",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "user-delivery",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "user-notification",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "user-order",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
             "tags": "management"
         },
         {
             "name": "admin",
-            "password_hash": "cmFiYml0bXExMjM0",
+            "password_hash": "Tploika129+2tyI34/a3sS1M0Y2d/BCOi2RXNOJwb6AKxX9l",
             "tags": "administrator"
         }
     ],

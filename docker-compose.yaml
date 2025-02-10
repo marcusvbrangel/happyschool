@@ -46,8 +46,8 @@ services:
 #      - "15671:15671"  # Porta SSL/TLS da interface de gerenciamento do RabbitMQ
       - "15692:15692"  # Porta para métricas Prometheus
     environment:
-      RABBITMQ_DEFAULT_USER: rabbitmq
-      RABBITMQ_DEFAULT_PASS: cmFiYml0bXExMjM0
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin1234
 #      RABBITMQ_NODENAME: rabbit@localhost
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq  # Dados do RabbitMQ
@@ -62,6 +62,8 @@ services:
 #      rabbitmqctl await_startup &&
 #      rabbitmqctl import_definitions /etc/rabbitmq/definitions.json
 #      "
+    networks:
+      - happyschool-network
 
   prometheus:
     image: prom/prometheus
@@ -70,8 +72,8 @@ services:
       - "9090:9090"
     volumes:
       - ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-
-
+    networks:
+      - happyschool-network
 
 volumes:
   happyschool-database-mysql:
