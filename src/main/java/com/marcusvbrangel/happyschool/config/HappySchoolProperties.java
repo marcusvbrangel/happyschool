@@ -24,4 +24,6 @@ public class HappySchoolProperties {
 
     private List<String> branches;
 
+    private String HappyschoolRabbitmqPaymentProcessQueue;
+
 }

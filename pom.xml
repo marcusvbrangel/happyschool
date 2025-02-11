@@ -13,12 +13,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>happyschool</name>
 	<description>Happy School Web Application</description>
-	<!--<properties>
+	<properties>
 		<java.version>21</java.version>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            ./target/site/jacoco-aggregate/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
-	</properties>-->
+<!--        <sonar.coverage.jacoco.xmlReportPaths>-->
+<!--            ./target/site/jacoco-aggregate/jacoco.xml-->
+<!--        </sonar.coverage.jacoco.xmlReportPaths>-->
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,6 +61,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
