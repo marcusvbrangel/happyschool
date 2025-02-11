@@ -1,0 +1,383 @@
+{
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "queues": [
+        {
+            "name": "dev.payment.process.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.invoice.generate.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.shipping.create.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.delivery.schedule.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.notification.send.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.order.create.v1.queue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+
+            }
+        },
+        {
+            "name": "dev.payment.process.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        },
+        {
+            "name": "dev.invoice.generate.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        },
+        {
+            "name": "dev.shipping.create.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        },
+        {
+            "name": "dev.delivery.schedule.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        },
+        {
+            "name": "dev.notification.send.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        },
+        {
+            "name": "dev.order.create.v1.dlq",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "dev.payment.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.invoice.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.shipping.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.delivery.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.notification.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.order.v1.direct.exchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.payment.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.invoice.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.shipping.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.delivery.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.notification.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dev.order.v1.dlq.exchange",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "dev.payment.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.payment.process.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "payment.process",
+            "arguments": {}
+        },
+        {
+            "source": "dev.invoice.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.invoice.generate.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "invoice.generate",
+            "arguments": {}
+        },
+        {
+            "source": "dev.shipping.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.shipping.create.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "shipping.create",
+            "arguments": {}
+        },
+        {
+            "source": "dev.delivery.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.delivery.schedule.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "delivery.schedule",
+            "arguments": {}
+        },
+        {
+            "source": "dev.notification.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.notification.send.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "notification.send",
+            "arguments": {}
+        },
+        {
+            "source": "dev.order.v1.direct.exchange",
+            "vhost": "/",
+            "destination": "dev.order.create.v1.queue",
+            "destination_type": "queue",
+            "routing_key": "order.create",
+            "arguments": {}
+        },
+        {
+            "source": "dev.payment.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.payment.process.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "dev.invoice.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.invoice.generate.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "dev.shipping.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.shipping.create.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "dev.delivery.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.delivery.schedule.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "dev.notification.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.notification.send.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "dev.order.v1.dlq.exchange",
+            "vhost": "/",
+            "destination": "dev.order.create.v1.dlq",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        }
+    ],
+    "users": [
+        {
+            "name": "user-payment",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "user-invoice",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "user-shipping",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "user-delivery",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "user-notification",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "user-order",
+            "password_hash": "jElSTy6+tTmYTnMDVa8BkhR31dJIe88P3joV8MPbGfQi9r4L",
+            "tags": "management"
+        },
+        {
+            "name": "admin",
+            "password_hash": "Tploika129+2tyI34/a3sS1M0Y2d/BCOi2RXNOJwb6AKxX9l",
+            "tags": "administrator"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "user-payment",
+            "vhost": "/",
+            "configure": "dev.payment.*",
+            "write": "dev.payment.*",
+            "read": "dev.payment.*"
+        },
+        {
+            "user": "user-invoice",
+            "vhost": "/",
+            "configure": "dev.invoice.*",
+            "write": "dev.invoice.*",
+            "read": "dev.invoice.*"
+        },
+        {
+            "user": "user-shipping",
+            "vhost": "/",
+            "configure": "dev.shipping.*",
+            "write": "dev.shipping.*",
+            "read": "dev.shipping.*"
+        },
+        {
+            "user": "user-delivery",
+            "vhost": "/",
+            "configure": "dev.delivery.*",
+            "write": "dev.delivery.*",
+            "read": "dev.delivery.*"
+        },
+        {
+            "user": "user-notification",
+            "vhost": "/",
+            "configure": "dev.notification.*",
+            "write": "dev.notification.*",
+            "read": "dev.notification.*"
+        },
+        {
+            "user": "user-order",
+            "vhost": "/",
+            "configure": "dev.order.*",
+            "write": "dev.order.*",
+            "read": "dev.order.*"
+        },
+        {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ]
+}

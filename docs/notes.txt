@@ -181,6 +181,16 @@ docker compose up -d --build
 
 --------------------------------------------------------------------------------
 
+The error message indicates that the password_hash values in your definitions.json file
+are not in Base64 format, which is required by RabbitMQ.
+
+https://www.base64encode.org/
+
+rabbitmq1234
+
+cmFiYml0bXExMjM0
+
+cmFiYml0bXExMjM0
 
 
 

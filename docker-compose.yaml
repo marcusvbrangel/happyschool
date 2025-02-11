@@ -29,15 +29,59 @@ services:
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     ports:
-      - '9090:9090'
+      - '9095:9090'
     depends_on:
       - mysql
     networks:
       - happyschool-network
 
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"  # Porta TCP padrão do RabbitMQ
+      - "15672:15672"  # Porta da interface de gerenciamento do RabbitMQ
+#      - "5671:5671"  # Porta SSL/TLS padrão do RabbitMQ
+#      - "15671:15671"  # Porta SSL/TLS da interface de gerenciamento do RabbitMQ
+      - "15692:15692"  # Porta para métricas Prometheus
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin1234
+#      RABBITMQ_NODENAME: rabbit@localhost
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq  # Dados do RabbitMQ
+      - rabbitmq_logs:/var/log/rabbitmq  # Logs do RabbitMQ
+      - ./conf/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf  # Arquivo de configuração
+      - ./conf/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json  # Arquivo de definições
+#      - ./certs:/etc/rabbitmq/certs  # Certificados SSL/TLS
+#    command: >
+#      bash -c "
+#      rabbitmq-plugins enable --offline rabbitmq_prometheus &&
+#      rabbitmq-server -detached &&
+#      rabbitmqctl await_startup &&
+#      rabbitmqctl import_definitions /etc/rabbitmq/definitions.json
+#      "
+    networks:
+      - happyschool-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - happyschool-network
+
 volumes:
   happyschool-database-mysql:
-      name: happyschool-database-mysql
+    name: happyschool-database-mysql
+  rabbitmq_data:
+    name: rabbitmq_data
+  rabbitmq_logs:
+    name: rabbitmq_logs
 
 networks:
   happyschool-network:
