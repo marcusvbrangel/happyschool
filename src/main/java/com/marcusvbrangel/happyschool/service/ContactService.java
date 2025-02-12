@@ -11,9 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Slf4j
 @Service
 public class ContactService {
@@ -31,32 +28,18 @@ public class ContactService {
         return isSaved;
     }
 
-    public Page<Contact> findMsgsWithOpenStatus(int pageNum, String sortField, String sortDir){
+    public Page<Contact> findMsgsWithOpenStatus(int pageNum,String sortField, String sortDir){
         int pageSize = 5;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
-            sortDir.equals("asc") ? Sort.by(sortField).ascending()
-                : Sort.by(sortField).descending());
-        Page<Contact> msgPage = contactRepository.findByStatus(
-            HappySchoolConstants.OPEN, pageable);
+            sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
+        Page<Contact> msgPage = contactRepository.findByStatus(HappySchoolConstants.OPEN, pageable);
         return msgPage;
-    }
-
-    public List<Contact> findMsgsWithOpenStatus(){
-        List<Contact> contactMsgs = contactRepository.findByStatus(HappySchoolConstants.OPEN);
-        return contactMsgs;
     }
 
     public boolean updateMsgStatus(int contactId){
         boolean isUpdated = false;
-
-        Optional<Contact> contact = contactRepository.findById(contactId);
-        contact.ifPresent(contact1 -> {
-            contact1.setStatus(HappySchoolConstants.CLOSE);
-        });
-
-        var contactUpdated = contactRepository.save(contact.get());
-
-        if(null != contactUpdated && contactUpdated.getUpdatedBy() != null) {
+        int rows = contactRepository.updateMsgStatusNative(HappySchoolConstants.CLOSE, contactId);
+        if(rows > 0) {
             isUpdated = true;
         }
         return isUpdated;
