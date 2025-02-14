@@ -197,6 +197,115 @@ cmFiYml0bXExMjM0
 --------------------------------------------------------------------------------
 
 
+happyschool-relmchar
+
+
+quero empacotar minha aplicaçao com o helm. criando os arquivo dentro de uma nova pasta chamada: myhelmcharapp
+
+
+Para empacotar sua aplicação com o Helm, siga os passos abaixo para criar os arquivos necessários dentro de uma nova pasta chamada `myhelmcharapp`:
+
+1. **Crie a estrutura do chart do Helm**:
+   No diretório raiz do seu projeto, execute o comando abaixo para criar a estrutura do chart do Helm:
+
+   ```sh
+   helm create myhelmcharapp
+   ```
+
+2. **Configure o `Chart.yaml`**:
+   Edite o arquivo `Chart.yaml` gerado para incluir as informações da sua aplicação:
+
+   ```yaml
+   apiVersion: v2
+   name: myhelmcharapp
+   description: A Helm chart for the HappySchool application
+   version: 0.1.0
+   appVersion: "1.0"
+   ```
+
+3. **Configure os templates**:
+   Edite os arquivos em `templates/` para configurar os recursos do Kubernetes necessários para sua aplicação. Por exemplo, edite o `deployment.yaml`:
+
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: {{ .Release.Name }}-happyschool
+     labels:
+       app: {{ .Release.Name }}-happyschool
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: {{ .Release.Name }}-happyschool
+     template:
+       metadata:
+         labels:
+           app: {{ .Release.Name }}-happyschool
+       spec:
+         containers:
+           - name: happyschool
+             image: marcusvbrangel/happyschool:dev
+             ports:
+               - containerPort: 9090
+             env:
+               - name: SPRING_PROFILES_ACTIVE
+                 value: "development"
+               - name: SPRING_DATASOURCE_URL
+                 value: "jdbc:mysql://happyschool-mysql:3306/happyschool?allowPublicKeyRetrieval=true&useSSL=false"
+               - name: SPRING_DATASOURCE_USERNAME
+                 value: "admin"
+               - name: SPRING_DATASOURCE_PASSWORD
+                 value: "1234"
+   ```
+
+4. **Configure o `values.yaml`**:
+   Edite o arquivo `values.yaml` para definir os valores padrão para os parâmetros do seu chart:
+
+   ```yaml
+   replicaCount: 1
+
+   image:
+     repository: marcusvbrangel/happyschool
+     tag: dev
+     pullPolicy: IfNotPresent
+
+   service:
+     type: ClusterIP
+     port: 9090
+
+   ingress:
+     enabled: false
+
+   resources: {}
+
+   nodeSelector: {}
+
+   tolerations: []
+
+   affinity: {}
+   ```
+
+5. **Empacote o chart**:
+   Execute o comando abaixo para empacotar o chart do Helm:
+
+   ```sh
+   helm package myhelmcharapp
+   ```
+
+6. **Instale o chart**:
+   Para instalar o chart no seu cluster Kubernetes, execute o comando abaixo:
+
+   ```sh
+   helm install happyschool ./myhelmcharapp
+   ```
+
+Seguindo esses passos, você terá empacotado e instalado sua aplicação HappySchool usando o Helm.
+
+
+
+
+
 --------------------------------------------------------------------------------
 
 
